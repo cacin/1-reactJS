@@ -4,25 +4,7 @@ import './Counter.css';
 import Display from './Display';
 import ButtonsPanel from './ButtonsPanel';
 import Clock from './Clock';
-import ClockFunctional from './ClockFunctional';
 import Step from './Step';
-import StepValue from './Step';
-
-
-/* function Counter(props){
-
-    let randomNumber = Math.floor(Math.random()*(108-1+1) + 1)
-
-    return (
-        <div className="counter">
-            Counter:
-            <span className="value">
-                {props.initValue}
-            </span>
-        </div>
-    );
-}
- */
 
 class Counter extends Component{
 
@@ -40,9 +22,7 @@ class Counter extends Component{
         this.setState({ step: Number(value) })
       }
 
-    changeValue=(action) =>{
-  
-      
+    changeValue=(action) =>{    
 
         this.setState(
             (prevState, prevProps) =>{
@@ -74,22 +54,23 @@ class Counter extends Component{
     }
 
     render(){
-        //let randomNumber = Math.floor(Math.random()*(108-1+1) + 1)
+        
         let clockElement = '';
         if (this.state.showClock){
-            clockElement = <Clock toggleClockMethod={this.toggleClock}/>;
+            clockElement = <Clock toggleClockMethod={this.toggleClock}/>
         }else{
-            clockElement = <span onClick={this.toggleClock} className="show-clock">show clock</span>;
+            clockElement = <span onClick={this.toggleClock} className="show-clock">show clock</span>
         }
 
-        return(<div className="counter">
-        Counter:
-        <Display displayValue={this.state.counterValue}/>
-        <ButtonsPanel buttonMethod={this.changeValue} step={this.state.step} />
-        <Step step={this.state.step} changeInputMethod={this.changeInput}/>
-        
-        {clockElement}
-    </div>)
+        return(
+        <div className="counter">
+            Counter:
+            <Display displayValue={this.state.counterValue}/>
+            <ButtonsPanel buttonMethod={this.changeValue} step={this.state.step} />
+            <Step step={this.state.step} changeInputMethod={this.changeInput}/>
+            
+            {clockElement}    
+        </div>)
     }
 }
 
